@@ -116,6 +116,10 @@ http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/
 <set-variable value="#[400]" doc:name="Set the HTTP Status - 400" doc:id="880648e7-489a-46f8-a0e4-4cf2f7bda6b6" variableName="httpStatus"/>
 <flow-ref doc:name="global-prepare-error-response-sub-flow" doc:id="741eb32e-8016-447a-a5dd-79b41817fce9" name="global-prepare-error-response-sub-flow"/>
 </on-error-continue>
+		<on-error-continue enableNotifications="true" logException="true" doc:name="On Error Continue" doc:id="15c30749-6332-44cd-a549-c0612377b81d" type="ANY">
+		<set-variable value="#[500]" doc:name="Set the HTTP Status - 500" doc:id="0a7fe199-da8c-460a-9d60-ce53a3b16414" variableName="httpStatus"/>
+<flow-ref doc:name="global-prepare-error-response-sub-flow" doc:id="2d29f57a-87bf-4a60-a9ef-7b62a35b90e1" name="global-prepare-error-response-sub-flow"/>
+</on-error-continue>
 </error-handler>
 	<sub-flow name="global-prepare-error-response-sub-flow" doc:id="1162c526-db76-48d7-a066-2a5b1b722f93" >
 		<tracing:set-logging-variable doc:id="1d52da31-e30e-4e6b-9f9a-adcf0cdd7911" variableName="mulesoft.error_message" value='#[error.description default "No description provided."]' doc:name="Set logging variable- mulesoft.error_message"/>
